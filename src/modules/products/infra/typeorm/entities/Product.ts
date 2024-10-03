@@ -1,5 +1,5 @@
 import {Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn} from 'typeorm'
-import OrdersProducts from '@modules/orders/typeorm/entities/OrdersProducts'
+import OrdersProducts from '@modules/orders/infra/typeorm/entities/OrdersProducts'
 
 @Entity('products') // mapeamento na tabela products
 class Product {
