@@ -19,7 +19,7 @@ export default class CustomersController {
   public async show(req: Request, res: Response): Promise<Response> {
     const { id } = req.params
 
-    const showCustomer = new ShowCustomerService()
+    const showCustomer = container.resolve(ShowCustomerService)
 
     const customer = await showCustomer.execute({ id })
 
