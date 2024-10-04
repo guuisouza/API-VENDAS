@@ -43,7 +43,7 @@ export default class CustomersController {
     const {name, email} = req.body
     const {id} = req.params
 
-    const updateCustomer = new UpdateCustomerService()
+    const updateCustomer = container.resolve(UpdateCustomerService)
 
     const customer = await updateCustomer.execute({
       id,
