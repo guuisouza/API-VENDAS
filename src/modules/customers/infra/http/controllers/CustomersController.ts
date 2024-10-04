@@ -4,13 +4,12 @@ import ShowCustomerService from "../../../services/ShowCustomerService";
 import CreateCustomerService from "../../../services/CreateCustomerService";
 import UpdateCustomerService from "../../../services/UpdateCustomerService";
 import DeleteCustomerService from "../../../services/DeleteCustomerService";
-import { CustomersRepository } from "../../typeorm/repositories/CustomersRepository";
 import { container } from "tsyringe";
 
 
 export default class CustomersController {
   public async index(req: Request, res: Response): Promise<Response> {
-    const listCostumers = new ListCostumerService()
+    const listCostumers = container.resolve(ListCostumerService)
 
     const customers = await listCostumers.execute()
 
