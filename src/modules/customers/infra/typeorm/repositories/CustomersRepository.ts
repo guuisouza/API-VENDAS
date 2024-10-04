@@ -2,6 +2,7 @@ import { getRepository, Repository } from "typeorm";
 import Customer from "../entities/Customer";
 import { ICustomersRepository } from "@modules/customers/domain/repositories/ICustomersRepository";
 import { ICreateCustomer } from "@modules/customers/domain/models/ICreateCustomer";
+import { ICustomer } from "@modules/customers/domain/models/ICustomer";
 
 export class CustomersRepository implements ICustomersRepository {
   private ormRepository: Repository<Customer> // o generics indica o que será manipulado
@@ -24,6 +25,16 @@ export class CustomersRepository implements ICustomersRepository {
     await this.ormRepository.save(customer)
 
     return customer
+  }
+
+  public async remove(customer: Customer): Promise<void> {
+    await this.ormRepository.remove(customer)
+  }
+
+  public async findAll(): Promise<ICustomer[] | undefined> {
+    const customers = await this.ormRepository.find()
+
+    return customers
   }
 
   public async findByName(name: string): Promise<Customer | undefined> {
